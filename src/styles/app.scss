@@ -1,0 +1,12 @@
+@import "~normalize.css";
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+  }
+}
