@@ -1,6 +1,15 @@
-$light-background: #fff;
-$black-color: #000;
 $primary-color: #4793ff;
 $base-color: #939cb0;
-$box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
 $border-radius: 15px;
+
+$box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
+
+:root {
+  --light-background: #fff;
+  --dark-background: #000;
+  --gray-background: #4f4f4f;
+  --dark-color: #000;
+  --light-color: #fff;
+  --card-background-light: rgba(71, 147, 255, 0.2);
+  --card-background-dark: #2e3035;
+}
