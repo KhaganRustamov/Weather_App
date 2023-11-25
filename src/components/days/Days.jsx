@@ -78,11 +78,11 @@ const Days = () => {
     <>
       <div className={styles.tabs}>
         <div className={styles.tabs_wrapper}>
-        {tabs.map((tab, i) => (
-          <div className={styles.tab} key={i}>
-            {tab.value}
-          </div>
-        ))}
+          {tabs.map((tab, i) => (
+            <div className={styles.tab} key={i}>
+              {tab.value}
+            </div>
+          ))}
         </div>
 
         <div className={styles.cancel}>Отменить</div>

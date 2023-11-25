@@ -31,7 +31,6 @@ export const items = [
 ];
 
 const ThisDayInfo = () => {
-
   return (
     <div className={styles.root}>
       <div className={styles.indicators}>

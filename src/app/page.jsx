@@ -1,4 +1,4 @@
-import ThisDay from "@/components/thisDay/home/ThisDay";
+import ThisDay from "@/components/thisDay/ThisDay";
 import ThisDayInfo from "@/components/thisDayInfo/ThisDayInfo";
 import Days from "@/components/days/Days";
 
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <div className="container_top">
         <ThisDay />
-        <ThisDayInfo /> 
+        <ThisDayInfo />
       </div>
       <Days />
     </>
