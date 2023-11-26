@@ -10,6 +10,7 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius;
   margin-top: 15px;
+  transition: $transition;
 
   &_items {
     display: flex;
@@ -21,6 +22,7 @@
     height: 200px;
     transition: 0.3s;
     cursor: pointer;
+    transition: $transition;
   }
 }
 
@@ -28,6 +30,7 @@
   margin-bottom: 7px;
   font-size: 18px;
   color: var(--text-color);
+  transition: $transition;
 
   &_info {
     font-size: 14px;
@@ -80,6 +83,7 @@
   justify-content: center;
   margin-right: 15px;
   cursor: pointer;
+  transition: $transition;
 }
 
 .cancel {
@@ -90,5 +94,6 @@
   &.active {
     background: $primary-color;
     color: #fff;
+    transition: $transition;
   }
 }

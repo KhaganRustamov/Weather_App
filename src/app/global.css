@@ -14,5 +14,5 @@
 
 .theme {
   background-color: var(--body-background);
-  transition: 1s;
+  transition: 0.5s;
 }

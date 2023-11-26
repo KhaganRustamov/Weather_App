@@ -1,3 +1,5 @@
+@import "@/styles/variables.scss";
+
 .container {
   width: 42px;
   height: 24px;
@@ -10,6 +12,7 @@
   position: relative;
   cursor: pointer;
   right: 30px;
+  transition: $transition;
 }
 
 .icon {
@@ -22,4 +25,5 @@
   background-color: #53c28b;
   border-radius: 50%;
   position: absolute;
+  transition: $transition;
 }

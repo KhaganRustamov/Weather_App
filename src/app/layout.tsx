@@ -22,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        {/* <Popup /> */}
         <ThemeProvider>
+        {/* <Popup /> */}
           <div className="container">
             <Header />
             {children}

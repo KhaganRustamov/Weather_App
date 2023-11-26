@@ -8,6 +8,7 @@
   width: 350px;
   height: 230px;
   padding: 20px;
+  transition: $transition;
 }
 
 .top {
@@ -29,6 +30,7 @@
 .day {
   font-size: 30px;
   color: var(--text-color);
+  transition: $transition;
 }
 
 .bottom {
