@@ -6,8 +6,8 @@
   flex-wrap: wrap;
   padding: 20px;
   width: 1160px;
-  background-color: $light-background;
-  box-shadow: $box-shadow;
+  background-color: var(--light-background);
+  box-shadow: var(--box-shadow);
   border-radius: $border-radius;
   margin-top: 15px;
 
@@ -27,7 +27,7 @@
 .day {
   margin-bottom: 7px;
   font-size: 18px;
-  color: $black-color;
+  color: var(--dark-color);
 
   &_info {
     font-size: 14px;
@@ -42,7 +42,7 @@
 
 .temp_day {
   font-size: 18px;
-  color: $black-color;
+  color: $base-color;
 }
 
 .temp_night {
@@ -69,11 +69,11 @@
 
 .cancel,
 .tab {
-  box-shadow: $box-shadow;
+  box-shadow: var(--box-shadow);
   border-radius: 20px;
   padding: 9px 20px;
-  background-color: $light-background;
-  color: $black-color;
+  background-color: var(--light-background);
+  color:  var(--dark-color);
   font-size: 18px;
   display: flex;
   align-items: center;
