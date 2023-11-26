@@ -1,7 +1,7 @@
 @import "@/styles/variables.scss";
 
 .container {
-  width: 42px;
+  width: 48px;
   height: 24px;
   border: 1.5px solid $primary-color;
   border-radius: 30px;
@@ -12,10 +12,6 @@
   position: relative;
   cursor: pointer;
   transition: $transition;
-}
-
-.icon {
-  font-size: 12px;
 }
 
 .ball {
