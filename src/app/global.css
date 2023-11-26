@@ -6,7 +6,7 @@
   --box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
 }
 
-.dark-theme {
+.dark {
   --body-background: #000;
   --component-background: #4f4f4f;
   --text-color: #fff;
@@ -14,10 +14,14 @@
   --box-shadow: 3px 3px 15px 5px rgba(243, 231, 231, 0.25);
 }
 
-.light-theme {
+.light {
   --body-background: #fff;
   --component-background: #fff;
   --text-color: #000;
   --card-background: rgba(71, 147, 255, 0.2);
   --box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
+}
+
+body {
+  background-color: var(--body-background);
 }

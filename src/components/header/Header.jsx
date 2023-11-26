@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Select from "react-select";
 
 import styles from "./header.module.scss";
 
 import logo from "@/assets/images/staticImages/logo.png";
-import theme from "@/assets/images/staticImages/theme.png";
+import Theme from "@/components/theme/Theme";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -33,7 +31,7 @@ const Header = () => {
         <div className={styles.title}>weather forecast</div>
       </div>
       <div className={styles.wrapper}>
-        <Image src={theme} className={styles.logo} width={30} height={30} />
+        <Theme />
         <Select
           defaultValue={options[0]}
           styles={colourStyles}

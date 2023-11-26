@@ -3,6 +3,7 @@ import { Nunito } from "next/font/google";
 
 import Header from "@/components/header/Header";
 import Popup from "@/components/popup/Popup";
+import "./global.css";
 
 import "@/styles/app.scss";
 
