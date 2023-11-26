@@ -2,7 +2,7 @@
 
 .root {
   margin-top: 50px;
-  background: var(--light-background);
+  background: var(--component-background);
   box-shadow: var(--box-shadow);
   border-radius: $border-radius;
   width: 350px;
@@ -28,7 +28,7 @@
 
 .day {
   font-size: 30px;
-  color: var(--black-color);
+  color: var(--text-color);
 }
 
 .bottom {

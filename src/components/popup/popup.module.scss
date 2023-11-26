@@ -11,7 +11,7 @@
   justify-content: space-between;
   padding: 40px;
   width: 750px;
-  background: $light-background;
+  background: var(--body-background);
   box-shadow: $box-shadow;
   border-radius: $border-radius;
 }

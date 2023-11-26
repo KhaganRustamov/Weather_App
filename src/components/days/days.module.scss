@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   padding: 20px;
   width: 1160px;
-  background-color: var(--light-background);
+  background-color: var(--component-background);
   box-shadow: var(--box-shadow);
   border-radius: $border-radius;
   margin-top: 15px;
@@ -27,7 +27,7 @@
 .day {
   margin-bottom: 7px;
   font-size: 18px;
-  color: var(--dark-color);
+  color: var(--text-color);
 
   &_info {
     font-size: 14px;
@@ -72,8 +72,8 @@
   box-shadow: var(--box-shadow);
   border-radius: 20px;
   padding: 9px 20px;
-  background-color: var(--light-background);
-  color:  var(--dark-color);
+  background-color: var(--component-background);
+  color:  var(--text-color);
   font-size: 18px;
   display: flex;
   align-items: center;
