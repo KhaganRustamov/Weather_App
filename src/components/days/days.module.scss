@@ -7,7 +7,7 @@
   padding: 20px;
   width: 1160px;
   background-color: var(--component-background);
-  box-shadow: var(--box-shadow);
+  box-shadow: $box-shadow;
   border-radius: $border-radius;
   margin-top: 15px;
 
@@ -69,7 +69,7 @@
 
 .cancel,
 .tab {
-  box-shadow: var(--box-shadow);
+  box-shadow: $box-shadow;
   border-radius: 20px;
   padding: 9px 20px;
   background-color: var(--component-background);

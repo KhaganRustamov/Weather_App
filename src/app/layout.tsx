@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 
 import Header from "@/components/header/Header";
+import { ThemeProvider } from "@/context/ThemeContext";
 import Popup from "@/components/popup/Popup";
 import "./global.css";
 
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunito.className}>
         {/* <Popup /> */}
-        <div className="container">
-          <Header />
-          {children}
-        </div>
+        <ThemeProvider>
+          <div className="container">
+            <Header />
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

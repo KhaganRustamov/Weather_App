@@ -3,7 +3,7 @@
 .root {
   margin-top: 50px;
   background: var(--component-background);
-  box-shadow: var(--box-shadow);
+  box-shadow: $box-shadow;
   border-radius: $border-radius;
   width: 700px;
   height: 230px;

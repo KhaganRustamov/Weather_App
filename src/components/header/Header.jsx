@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Select from "react-select";
 
@@ -13,16 +15,16 @@ const options = [
 ];
 
 const Header = () => {
-  const colourStyles = {
-    control: (styles) => ({
-      ...styles,
-      backgroundColor: "#F0F8FF",
-      width: "200px",
-      height: "30px",
-      border: "none",
-      borderRadius: "10px",
-    }),
-  };
+  // const colourStyles = {
+  //   control: (styles) => ({
+  //     ...styles,
+  //     backgroundColor: "#F0F8FF",
+  //     width: "200px",
+  //     height: "30px",
+  //     border: "none",
+  //     borderRadius: "10px",
+  //   }),
+  // };
 
   return (
     <header className={styles.root}>
@@ -32,11 +34,11 @@ const Header = () => {
       </div>
       <div className={styles.wrapper}>
         <Theme />
-        <Select
+        {/* <Select
           defaultValue={options[0]}
           styles={colourStyles}
           options={options}
-        />
+        /> */}
       </div>
     </header>
   );

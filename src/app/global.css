@@ -1,27 +1,18 @@
-:root {
-  --body-background: #fff;
-  --component-background: #fff;
-  --text-color: #000;
-  --card-background: rgba(71, 147, 255, 0.2);
-  --box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
-}
-
 .dark {
   --body-background: #000;
   --component-background: #4f4f4f;
-  --text-color: #fff;
+  --text-color: #f0e9e9;
   --card-background: #2e3035;
-  --box-shadow: 3px 3px 15px 5px rgba(243, 231, 231, 0.25);
 }
 
 .light {
-  --body-background: #fff;
-  --component-background: #fff;
+  --body-background: #f0e9e9;
+  --component-background: #f0e9e9;
   --text-color: #000;
   --card-background: rgba(71, 147, 255, 0.2);
-  --box-shadow: 3px 3px 15px 5px rgba(180, 180, 180, 0.25);
 }
 
-body {
+.theme {
   background-color: var(--body-background);
+  transition: 1s;
 }
