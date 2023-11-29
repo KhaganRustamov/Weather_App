@@ -5,7 +5,6 @@ import smallRain from "./small_rain.png";
 import smallRainSun from "./small_rain_sun.png";
 import sunly from "./sunly.png";
 import mainlyCloudy from "./mainly_cloudy.png";
-import close from "../staticImages/close.png";
 
 const DynamicImages = ({ id }) => {
   switch (id) {
@@ -19,8 +18,6 @@ const DynamicImages = ({ id }) => {
       return <Image src={sunly} width={50} height={50} />;
     case "mainly_cloudy":
       return <Image src={mainlyCloudy} width={50} height={50} />;
-    case "close":
-      return <Image src={close} width={20} height={20} />;
     default:
       return null;
   }

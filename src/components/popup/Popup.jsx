@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { items } from "@/components/thisDayInfo/ThisDayInfo";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
+import close from "@/assets/images/staticImages/close.png";
 
 import styles from "./popup.module.scss";
 
@@ -30,9 +32,7 @@ const Popup = () => {
             </div>
           ))}
         </div>
-        <div className={styles.close}>
-          <DynamicImages id="close" />
-        </div>
+        <Image className={styles.close} src={close} width={20} height={20} />
       </div>
     </>
   );
