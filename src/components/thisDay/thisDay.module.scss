@@ -38,3 +38,13 @@
   line-height: 25px;
   color: $base-color;
 }
+
+.time,
+.city {
+  display: flex;
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+}

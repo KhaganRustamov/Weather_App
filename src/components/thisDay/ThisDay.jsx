@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
 import { getThisDay } from "@/services/getData";
 import styles from "./thisDay.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
+import clock from "@/assets/images/staticImages/clock.png";
+import navigation from "@/assets/images/staticImages/navigation.png";
 
 const ThisDay = () => {
   const [data, setData] = useState({});
@@ -30,8 +34,14 @@ const ThisDay = () => {
         <DynamicImages weatherType={weatherType} />
       </div>
       <div className={styles.bottom}>
-        <div>{formattedTime}</div>
-        <div>{city}</div>
+        <div className={styles.time}>
+          <Image src={clock} alt="clock" />
+          <div>{formattedTime}</div>
+        </div>
+        <div className={styles.city}>
+          <Image src={navigation} alt="nav" />
+          <div>{city}</div>
+        </div>
       </div>
     </div>
   );
