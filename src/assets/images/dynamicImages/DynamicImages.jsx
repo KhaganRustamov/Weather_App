@@ -1,26 +1,39 @@
 import Image from "next/image";
 
-import rainly from "./rainly.png";
+import rainly from "./heavy-rain.png";
 import smallRain from "./small_rain.png";
 import smallRainSun from "./small_rain_sun.png";
-import sunly from "./sunly.png";
-import mainlyCloudy from "./mainly_cloudy.png";
+import sunly from "./sun.png";
+import mainlyCloudy from "./cloudy.png";
+import snowly from "./snow.png";
 
-const DynamicImages = ({ id }) => {
-  switch (id) {
-    case "rain":
-      return <Image src={rainly} width={50} height={50} />;
-    case "small_rain":
-      return <Image src={smallRain} width={50} height={50} />;
-    case "small_rain_sun":
-      return <Image src={smallRainSun} width={50} height={50} />;
-    case "sun":
-      return <Image src={sunly} width={50} height={50} />;
-    case "mainly_cloudy":
-      return <Image src={mainlyCloudy} width={50} height={50} />;
+const DynamicImages = ({ weatherType }) => {
+  let imageSrc;
+
+  switch (weatherType) {
+    case "Rain":
+      imageSrc = rainly;
+      break;
+    case "Drizzle":
+      imageSrc = smallRain;
+      break;
+    case "Thunderstorm":
+      imageSrc = smallRainSun;
+      break;
+    case "Clear":
+      imageSrc = sunly;
+      break;
+    case "Clouds":
+      imageSrc = mainlyCloudy;
+      break;
+    case "Snow":
+      imageSrc = snowly;
+      break;
     default:
       return null;
   }
+
+  return <Image src={imageSrc} />;
 };
 
 export default DynamicImages;

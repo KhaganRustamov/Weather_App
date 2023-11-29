@@ -18,7 +18,7 @@ const ThisDay = () => {
     getThisDay().then(setData);
   }, []);
 
-  const { temp, city } = data;
+  const { temp, city, weatherType } = data;
 
   return (
     <div className={styles.root}>
@@ -27,7 +27,7 @@ const ThisDay = () => {
           <div className={styles.temp}>{temp}°</div>
           <div className={styles.day}>Today</div>
         </div>
-        <DynamicImages id="sun" />
+        <DynamicImages weatherType={weatherType} />
       </div>
       <div className={styles.bottom}>
         <div>{formattedTime}</div>
