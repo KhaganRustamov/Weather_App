@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { getThisDay } from "@/services/getData";
+import { getThisDay, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./thisDay.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import clock from "@/assets/images/staticImages/clock.png";
 import navigation from "@/assets/images/staticImages/navigation.png";
 
 const ThisDay = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
   const currentTime = new Date();
 
   const formattedTime = currentTime.toLocaleTimeString([], {
@@ -22,7 +22,7 @@ const ThisDay = () => {
     getThisDay().then(setData);
   }, []);
 
-  const { temp, city, weatherType } = data;
+  const { temp, city, weatherType } = data as FormattedWeatherInfo;
 
   return (
     <div className={styles.root}>

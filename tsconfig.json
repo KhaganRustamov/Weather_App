@@ -27,10 +27,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/header/Header.jsx",
-    "src/components/thisDay/ThisDay.jsx",
-    "src/components/thisDayInfo/ThisDayInfo.jsx",
-    "src/app/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

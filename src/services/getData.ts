@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 const _apiBase = "http://api.openweathermap.org/data/2.5/forecast?";
 const _apiKey = "appid=14781ef057bc275f053d6c09fcb0e8fd";
 
-export interface WeatherData {
+interface WeatherData {
   list: {
     main: {
       temp: number;
@@ -23,6 +23,16 @@ export interface WeatherData {
   };
 }
 
+export interface FormattedWeatherInfo {
+  temp: number;
+  tempFeelsLike: number;
+  city: string;
+  weatherType: string;
+  pressure: number;
+  humidity: number;
+  windSpeed: number;
+}
+
 export const getThisDay = async () => {
   const response: AxiosResponse<WeatherData> = await axios.get(
     `${_apiBase}${_apiKey}&q=London&cnt=1`
@@ -33,7 +43,7 @@ export const getThisDay = async () => {
   return _weatherInfo(response.data);
 };
 
-const _weatherInfo = (weather: WeatherData) => {
+const _weatherInfo = (weather: WeatherData): FormattedWeatherInfo => {
   return {
     temp: Math.round(weather.list[0].main.temp - 273.15),
     tempFeelsLike: Math.round(weather.list[0].main.feels_like - 273.15),
