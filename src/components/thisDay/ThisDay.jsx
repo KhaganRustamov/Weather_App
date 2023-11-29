@@ -15,13 +15,10 @@ const ThisDay = () => {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      setData(await getThisDay());
-    };
-    fetchData();
+    getThisDay().then(setData);
   }, []);
 
-  const { temp, city} = data;
+  const { temp, city } = data;
 
   return (
     <div className={styles.root}>
@@ -33,7 +30,7 @@ const ThisDay = () => {
         <DynamicImages id="sun" />
       </div>
       <div className={styles.bottom}>
-        <div>Time: {formattedTime}</div>
+        <div>{formattedTime}</div>
         <div>{city}</div>
       </div>
     </div>

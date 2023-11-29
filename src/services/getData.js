@@ -15,5 +15,6 @@ const _weatherInfo = (weather) => {
   return {
     temp: Math.round(Number(weather.list[0].main.temp) - 273.15),
     city: weather.city.name,
+    weatherType: weather.list[0].weather[0].main,
   };
 };

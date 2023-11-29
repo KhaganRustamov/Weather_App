@@ -1,4 +1,3 @@
-import Select from "react-select";
 import { items } from "@/components/thisDayInfo/ThisDayInfo";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 
