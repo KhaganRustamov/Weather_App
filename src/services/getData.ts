@@ -7,10 +7,16 @@ export interface WeatherData {
   list: {
     main: {
       temp: number;
+      feels_like: number;
+      pressure: number;
+      humidity: number;
     };
     weather: {
       main: string;
     }[];
+    wind: {
+      speed: number;
+    };
   }[];
   city: {
     name: string;
@@ -30,7 +36,11 @@ export const getThisDay = async () => {
 const _weatherInfo = (weather: WeatherData) => {
   return {
     temp: Math.round(weather.list[0].main.temp - 273.15),
+    tempFeelsLike: Math.round(weather.list[0].main.feels_like - 273.15),
     city: weather.city.name,
     weatherType: weather.list[0].weather[0].main,
+    pressure: weather.list[0].main.pressure,
+    humidity: weather.list[0].main.humidity,
+    windSpeed: Math.round(weather.list[0].wind.speed),
   };
 };
