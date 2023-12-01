@@ -40,21 +40,18 @@ const Days = () => {
 
   return (
     <>
-      <div className={styles.tabs}>
-        <div className={styles.tabs_wrapper}>
+        <div className={styles.tabs}>
           {tabs.map((tab, i) => (
             <div
-              // className={`${styles.tab} ${tabs[i] === i ? styles.active : ""}`}
+              className={`${styles.tab} ${
+                tabs[i] === tabs[i] ? styles.active : ""
+              }`}
               key={i}
             >
               {tab}
             </div>
           ))}
         </div>
-
-        <div className={styles.cancel}>Отменить</div>
-      </div>
-
       <div className={styles.days}>{days}</div>
     </>
   );
