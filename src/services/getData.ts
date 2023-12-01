@@ -33,9 +33,9 @@ export interface FormattedWeatherInfo {
   windSpeed: number;
 }
 
-export const getThisDay = async () => {
+export const getThisDay = async (i: number) => {
   const response: AxiosResponse<WeatherData> = await axios.get(
-    `${_apiBase}${_apiKey}&q=London&cnt=1`
+    `${_apiBase}${_apiKey}&q=London&cnt=${i}`
   );
 
   if (!response.data) throw new Error("Unable to fetch data.");

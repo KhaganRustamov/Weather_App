@@ -15,7 +15,7 @@ const ThisDayInfo: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
 
   useEffect(() => {
-    getThisDay().then(setData);
+    getThisDay(1).then(setData);
   }, []);
 
   if (data === undefined) {
