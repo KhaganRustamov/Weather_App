@@ -19,7 +19,7 @@ const ThisDay: React.FC = () => {
   });
 
   useEffect(() => {
-    getThisDay(1).then(setData);
+    getThisDay().then(setData);
   }, []);
 
   if (data === undefined) {

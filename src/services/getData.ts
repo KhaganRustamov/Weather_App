@@ -10,9 +10,12 @@ interface WeatherData {
       feels_like: number;
       pressure: number;
       humidity: number;
+      temp_max: number;
+      temp_min: number;
     };
     weather: {
       main: string;
+      description: string;
     }[];
     wind: {
       speed: number;
@@ -24,26 +27,39 @@ interface WeatherData {
 }
 
 export interface FormattedWeatherInfo {
-  temp: number;
-  tempFeelsLike: number;
-  city: string;
-  weatherType: string;
-  pressure: number;
-  humidity: number;
-  windSpeed: number;
+  temp?: number;
+  tempFeelsLike?: number;
+  city?: string;
+  weatherType?: string;
+  pressure?: number;
+  humidity?: number;
+  windSpeed?: number;
+  tempDay?: number;
+  tempNight?: number;
+  description?: string;
 }
 
-export const getThisDay = async (i: number) => {
+export const getThisDay = async (): Promise<FormattedWeatherInfo> => {
+  const response: AxiosResponse<WeatherData> = await axios.get(
+    `${_apiBase}${_apiKey}&q=London&cnt=1`
+  );
+
+  if (!response.data) throw new Error("Unable to fetch data.");
+
+  return _ThisDayInfo(response.data);
+};
+
+export const getAllDay = async (i: number): Promise<FormattedWeatherInfo[]> => {
   const response: AxiosResponse<WeatherData> = await axios.get(
     `${_apiBase}${_apiKey}&q=London&cnt=${i}`
   );
 
   if (!response.data) throw new Error("Unable to fetch data.");
 
-  return _weatherInfo(response.data);
+  return _AllDayInfo(response.data);
 };
 
-const _weatherInfo = (weather: WeatherData): FormattedWeatherInfo => {
+const _ThisDayInfo = (weather: WeatherData): FormattedWeatherInfo => {
   return {
     temp: Math.round(weather.list[0].main.temp - 273.15),
     tempFeelsLike: Math.round(weather.list[0].main.feels_like - 273.15),
@@ -53,4 +69,13 @@ const _weatherInfo = (weather: WeatherData): FormattedWeatherInfo => {
     humidity: weather.list[0].main.humidity,
     windSpeed: Math.round(weather.list[0].wind.speed),
   };
+};
+
+const _AllDayInfo = (weather: WeatherData): FormattedWeatherInfo[] => {
+  return weather.list.map((item) => ({
+    weatherType: item.weather[0].main,
+    tempDay: Math.round(item.main.temp_max - 273.15),
+    tempNight: Math.round(item.main.temp_min - 273.15),
+    description: item.weather[0].description,
+  }));
 };

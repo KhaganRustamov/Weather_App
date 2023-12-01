@@ -12,6 +12,10 @@
   margin-top: 15px;
   transition: $transition;
 
+  &_flex {
+    display: flex;
+  }
+
   &_items {
     display: flex;
     flex-direction: column;
