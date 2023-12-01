@@ -46,7 +46,15 @@ export const getThisDay = async (): Promise<FormattedWeatherInfo> => {
 
   if (!response.data) throw new Error("Unable to fetch data.");
 
-  return _ThisDayInfo(response.data);
+  return {
+    temp: Math.round(response.data.list[0].main.temp - 273.15),
+    tempFeelsLike: Math.round(response.data.list[0].main.feels_like - 273.15),
+    city: response.data.city.name,
+    weatherType: response.data.list[0].weather[0].main,
+    pressure: response.data.list[0].main.pressure,
+    humidity: response.data.list[0].main.humidity,
+    windSpeed: Math.round(response.data.list[0].wind.speed),
+  };
 };
 
 export const getAllDay = async (i: number): Promise<FormattedWeatherInfo[]> => {
@@ -56,23 +64,7 @@ export const getAllDay = async (i: number): Promise<FormattedWeatherInfo[]> => {
 
   if (!response.data) throw new Error("Unable to fetch data.");
 
-  return _AllDayInfo(response.data);
-};
-
-const _ThisDayInfo = (weather: WeatherData): FormattedWeatherInfo => {
-  return {
-    temp: Math.round(weather.list[0].main.temp - 273.15),
-    tempFeelsLike: Math.round(weather.list[0].main.feels_like - 273.15),
-    city: weather.city.name,
-    weatherType: weather.list[0].weather[0].main,
-    pressure: weather.list[0].main.pressure,
-    humidity: weather.list[0].main.humidity,
-    windSpeed: Math.round(weather.list[0].wind.speed),
-  };
-};
-
-const _AllDayInfo = (weather: WeatherData): FormattedWeatherInfo[] => {
-  return weather.list.map((item) => ({
+  return response.data.list.map((item) => ({
     weatherType: item.weather[0].main,
     tempDay: Math.round(item.main.temp_max - 273.15),
     tempNight: Math.round(item.main.temp_min - 273.15),
