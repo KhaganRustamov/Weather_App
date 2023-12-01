@@ -9,6 +9,7 @@
   height: 230px;
   padding: 20px;
   transition: $transition;
+  position: relative;
 }
 
 .indicators {
@@ -34,4 +35,10 @@
 .value {
   color: var(--text-color);
   transition: $transition;
+}
+
+.cloud {
+  top: 0;
+  right: 0;
+  position: absolute;
 }

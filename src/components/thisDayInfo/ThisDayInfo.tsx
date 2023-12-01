@@ -8,6 +8,7 @@ import { getThisDay, FormattedWeatherInfo } from "@/services/getData";
 import thermometer from "@/assets/images/staticImages/thermometer.png";
 import pressureImg from "@/assets/images/staticImages/pressure.png";
 import humidityImg from "@/assets/images/staticImages/humidity.png";
+import bigCloud from "@/assets/images/staticImages/big-cloud.png";
 import wind from "@/assets/images/staticImages/wind.png";
 
 const ThisDayInfo: React.FC = () => {
@@ -60,6 +61,7 @@ const ThisDayInfo: React.FC = () => {
           </div>
         ))}
       </div>
+      <Image alt="big-cloud" src={bigCloud} className={styles.cloud}/>
     </div>
   );
 };
