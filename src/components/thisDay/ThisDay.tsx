@@ -9,7 +9,7 @@ import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import clock from "@/assets/images/staticImages/clock.png";
 import navigation from "@/assets/images/staticImages/navigation.png";
 
-const ThisDay = () => {
+const ThisDay: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
   const currentTime = new Date();
 
@@ -21,6 +21,10 @@ const ThisDay = () => {
   useEffect(() => {
     getThisDay().then(setData);
   }, []);
+
+  if (data === undefined) {
+    return;
+  }
 
   const { temp, city, weatherType } = data as FormattedWeatherInfo;
 

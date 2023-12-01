@@ -10,8 +10,17 @@ import pressureImg from "@/assets/images/staticImages/pressure.png";
 import humidityImg from "@/assets/images/staticImages/humidity.png";
 import wind from "@/assets/images/staticImages/wind.png";
 
-const ThisDayInfo = () => {
+const ThisDayInfo: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
+
+  useEffect(() => {
+    getThisDay().then(setData);
+  }, []);
+
+  if (data === undefined) {
+    return;
+  }
+
   const { temp, tempFeelsLike, pressure, humidity, windSpeed } =
     data as FormattedWeatherInfo;
 
@@ -39,10 +48,6 @@ const ThisDayInfo = () => {
       value: `${windSpeed} m/s`,
     },
   ];
-
-  useEffect(() => {
-    getThisDay().then(setData);
-  }, []);
 
   return (
     <div className={styles.root}>
