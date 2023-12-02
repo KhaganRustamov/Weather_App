@@ -47,13 +47,13 @@ export const getThisDay = async (): Promise<FormattedWeatherInfo> => {
   if (!response.data) throw new Error("Unable to fetch data.");
 
   return {
-    temp: Math.round(response.data.list[0].main.temp - 273.15),
-    tempFeelsLike: Math.round(response.data.list[0].main.feels_like - 273.15),
+    temp: Math.ceil(response.data.list[0].main.temp - 273.15),
+    tempFeelsLike: Math.floor(response.data.list[0].main.feels_like - 273.15),
     city: response.data.city.name,
     weatherType: response.data.list[0].weather[0].main,
     pressure: response.data.list[0].main.pressure,
     humidity: response.data.list[0].main.humidity,
-    windSpeed: Math.round(response.data.list[0].wind.speed),
+    windSpeed: Math.ceil(response.data.list[0].wind.speed),
   };
 };
 
@@ -66,8 +66,8 @@ export const getAllDay = async (i: number): Promise<FormattedWeatherInfo[]> => {
 
   return response.data.list.map((item) => ({
     weatherType: item.weather[0].main,
-    tempDay: Math.round(item.main.temp_max - 273.15),
-    tempNight: Math.round(item.main.temp_min - 273.15),
+    tempDay: Math.ceil(item.main.temp_max - 273.15),
+    tempNight: Math.floor(item.main.temp_min - 273.15),
     description: item.weather[0].description,
   }));
 };
