@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 
 import { getAllDay, FormattedWeatherInfo } from "@/services/getData";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import styles from "./days.module.scss";
 
-const Days = () => {
+const Days: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo[] | undefined>(
     undefined
   );

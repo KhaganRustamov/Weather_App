@@ -1,10 +1,22 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 
-export const ThemeContext = createContext();
+interface ThemeContextProps {
+  toggle: () => void;
+  mode: string | null;
+}
 
-export const ThemeProvider = ({ children }) => {
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+export const ThemeContext = createContext<ThemeContextProps>({
+  toggle: () => {},
+  mode: null,
+});
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [mode, setMode] = useState(() => localStorage.getItem("theme"));
 
   const toggle = () => {

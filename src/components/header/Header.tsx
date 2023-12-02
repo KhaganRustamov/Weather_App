@@ -11,7 +11,13 @@ const Header = () => {
   return (
     <header className={styles.root}>
       <div className={styles.wrapper}>
-        <Image src={logo} className={styles.logo} width={60} height={60} />
+        <Image
+          alt="logo"
+          src={logo}
+          className={styles.logo}
+          width={60}
+          height={60}
+        />
         <div className={styles.title}>weather forecast</div>
       </div>
       <div className={styles.wrapper}>
