@@ -16,4 +16,5 @@
   background-color: var(--body-background);
   transition: 0.5s;
   height: 100vh;
+  overflow: auto;
 }

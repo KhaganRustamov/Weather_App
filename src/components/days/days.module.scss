@@ -1,9 +1,6 @@
 @import "@/styles/variables.scss";
 
 .days {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   padding: 20px;
   width: 1160px;
   background-color: var(--component-background);
@@ -11,9 +8,13 @@
   border-radius: $border-radius;
   margin-top: 15px;
   transition: $transition;
+  margin-bottom: 20px;
 
-  &_flex {
-    display: flex;
+  &_grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    grid-row-gap: 12.5px;
   }
 
   &_items {

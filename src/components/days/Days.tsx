@@ -48,7 +48,7 @@ const Days = () => {
       );
     });
 
-    return <div className={styles.days_flex}>{items}</div>;
+    return <div className={styles.days_grid}>{items}</div>;
   };
 
   const getDayName = (dayIndex: number) => {
