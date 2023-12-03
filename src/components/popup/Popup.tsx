@@ -98,9 +98,14 @@ const Popup: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className={styles.close} onClick={closePopup}>
-              <Image alt="close" src={close} width={20} height={20} />
-            </div>
+            <Image
+              className={styles.close}
+              onClick={closePopup}
+              alt="close"
+              src={close}
+              width={20}
+              height={20}
+            />
           </div>
         </div>
       )}

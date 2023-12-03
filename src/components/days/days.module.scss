@@ -78,7 +78,6 @@
   margin-top: 40px;
 }
 
-.cancel,
 .tab {
   box-shadow: $box-shadow;
   border-radius: 20px;
@@ -92,10 +91,6 @@
   margin-right: 15px;
   cursor: pointer;
   transition: $transition;
-}
-
-.cancel {
-  margin-right: 0;
 }
 
 .active {
