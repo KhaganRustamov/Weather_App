@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 
 import { getAllDay, FormattedWeatherInfo } from "@/services/getData";
+import Popup from "../popup/Popup";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import styles from "./days.module.scss";
 
@@ -12,6 +13,11 @@ const Days: React.FC = () => {
     undefined
   );
   const [activeTab, setActiveTab] = useState(0);
+  const [popup, setPopup] = useState(false);
+
+  const showPopup = () => {
+    setPopup(!popup);
+  };
 
   const tabs = ["For a week", "For 14 days", "For a month"];
   const daysToShow = [7, 14, 30];
@@ -35,7 +41,7 @@ const Days: React.FC = () => {
       currentDate.setDate(currentDate.getDate() + i);
 
       return (
-        <div className={styles.days_items} key={i}>
+        <div onClick={showPopup} className={styles.days_items} key={i}>
           <div className={styles.day}>
             {isToday ? "Today" : getDayName(dayOfWeek)}
           </div>
@@ -71,6 +77,7 @@ const Days: React.FC = () => {
           </div>
         ))}
       </div>
+      {popup && <Popup />}
       <div className={styles.days}>{days}</div>
     </>
   );

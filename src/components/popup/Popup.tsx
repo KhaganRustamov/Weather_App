@@ -14,8 +14,13 @@ import wind from "@/assets/images/staticImages/wind.png";
 import clock from "@/assets/images/staticImages/clock.png";
 import navigation from "@/assets/images/staticImages/navigation.png";
 
-const Popup = () => {
+const Popup: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
+  const [popup, setPopup] = useState(true);
+
+  const closePopup = () => {
+    setPopup(!popup);
+  };
 
   const currentTime = new Date();
 
@@ -68,38 +73,37 @@ const Popup = () => {
   ];
   return (
     <>
-      <div className={styles.blur}></div>
-      <div className={styles.popup}>
-        <div className={styles.day}>
-          <div className={styles.day__temp}>{temp}°</div>
-          <div className={styles.day__name}>Среда</div>
-          <DynamicImages weatherType={weatherType} />
-          <div className={styles.day__time}>
-            <Image src={clock} alt="clock" />
-            {formattedTime}
-          </div>
-          <div className={styles.day__city}>
-            <Image src={navigation} alt="nav" />
-            {city}
-          </div>
-        </div>
-        <div className={styles.info}>
-          {items.map((item, i) => (
-            <div className={styles.items} key={i}>
-              <div className={styles.icon}>{item.icon}</div>
-              <div className={styles.name}>{item.name}</div>
-              <div className={styles.value}>{item.value}</div>
+      {popup && (
+        <div className={styles.blur}>
+          <div className={styles.popup}>
+            <div className={styles.day}>
+              <div className={styles.day__temp}>{temp}°</div>
+              <div className={styles.day__name}>Среда</div>
+              <DynamicImages weatherType={weatherType} />
+              <div className={styles.day__time}>
+                <Image src={clock} alt="clock" />
+                {formattedTime}
+              </div>
+              <div className={styles.day__city}>
+                <Image src={navigation} alt="nav" />
+                {city}
+              </div>
             </div>
-          ))}
+            <div className={styles.info}>
+              {items.map((item, i) => (
+                <div className={styles.items} key={i}>
+                  <div className={styles.icon}>{item.icon}</div>
+                  <div className={styles.name}>{item.name}</div>
+                  <div className={styles.value}>{item.value}</div>
+                </div>
+              ))}
+            </div>
+            <div className={styles.close} onClick={closePopup}>
+              <Image alt="close" src={close} width={20} height={20} />
+            </div>
+          </div>
         </div>
-        <Image
-          alt="close"
-          className={styles.close}
-          src={close}
-          width={20}
-          height={20}
-        />
-      </div>
+      )}
     </>
   );
 };
