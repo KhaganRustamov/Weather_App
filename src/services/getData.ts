@@ -27,47 +27,37 @@ interface WeatherData {
 }
 
 export interface FormattedWeatherInfo {
-  temp?: number;
-  tempFeelsLike?: number;
-  city?: string;
-  weatherType?: string;
-  pressure?: number;
-  humidity?: number;
-  windSpeed?: number;
-  tempDay?: number;
-  tempNight?: number;
-  description?: string;
+  temp: number;
+  tempFeelsLike: number;
+  city: string;
+  weatherType: string;
+  pressure: number;
+  humidity: number;
+  windSpeed: number;
+  tempDay: number;
+  tempNight: number;
+  description: string;
 }
 
-export const getThisDay = async (): Promise<FormattedWeatherInfo> => {
+export const getWeatherInfo = async (count: number) => {
   const response: AxiosResponse<WeatherData> = await axios.get(
-    `${_apiBase}${_apiKey}&q=London&cnt=1`
+    `${_apiBase}${_apiKey}&q=London&cnt=${count}`
   );
 
   if (!response.data) throw new Error("Unable to fetch data.");
 
-  return {
-    temp: Math.ceil(response.data.list[0].main.temp - 273.15),
-    tempFeelsLike: Math.floor(response.data.list[0].main.feels_like - 273.15),
-    city: response.data.city.name,
-    weatherType: response.data.list[0].weather[0].main,
-    pressure: response.data.list[0].main.pressure,
-    humidity: response.data.list[0].main.humidity,
-    windSpeed: Math.ceil(response.data.list[0].wind.speed),
-  };
-};
-
-export const getAllDay = async (i: number): Promise<FormattedWeatherInfo[]> => {
-  const response: AxiosResponse<WeatherData> = await axios.get(
-    `${_apiBase}${_apiKey}&q=London&cnt=${i}`
-  );
-
-  if (!response.data) throw new Error("Unable to fetch data.");
-
-  return response.data.list.map((item) => ({
-    weatherType: item.weather[0].main,
-    tempDay: Math.ceil(item.main.temp_max - 273.15),
-    tempNight: Math.floor(item.main.temp_min - 273.15),
-    description: item.weather[0].description,
-  }));
-};
+  return response.data.list.map((item) => {
+    return {
+      temp: Math.ceil(item.main.temp - 273.15),
+      tempFeelsLike: Math.floor(item.main.feels_like - 273.15),
+      city: response.data.city.name,
+      pressure: item.main.pressure,
+      humidity: item.main.humidity,
+      windSpeed: Math.ceil(item.wind.speed),
+      weatherType: item.weather[0].main,
+      tempDay: Math.ceil(item.main.temp_max - 273.15),
+      tempNight: Math.floor(item.main.temp_min - 273.15),
+      description: item.weather[0].description,
+    };
+  });
+}

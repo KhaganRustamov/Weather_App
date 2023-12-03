@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import styles from "./thisDayInfo.module.scss";
-import { getThisDay, FormattedWeatherInfo } from "@/services/getData";
+import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import thermometer from "@/assets/images/staticImages/thermometer.png";
 import pressureImg from "@/assets/images/staticImages/pressure.png";
 import humidityImg from "@/assets/images/staticImages/humidity.png";
@@ -15,7 +15,10 @@ const ThisDayInfo: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
 
   useEffect(() => {
-    getThisDay().then(setData);
+    getWeatherInfo(1).then((weatherInfoArray) => {
+      const [weatherInfo] = weatherInfoArray;
+      setData(weatherInfo);
+    });
   }, []);
 
   if (data === undefined) {
@@ -61,7 +64,7 @@ const ThisDayInfo: React.FC = () => {
           </div>
         ))}
       </div>
-      <Image alt="big-cloud" src={bigCloud} className={styles.cloud}/>
+      <Image alt="big-cloud" src={bigCloud} className={styles.cloud} />
     </div>
   );
 };

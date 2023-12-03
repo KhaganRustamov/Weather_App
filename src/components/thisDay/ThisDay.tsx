@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { getThisDay, FormattedWeatherInfo } from "@/services/getData";
+import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./thisDay.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import clock from "@/assets/images/staticImages/clock.png";
@@ -19,7 +19,10 @@ const ThisDay: React.FC = () => {
   });
 
   useEffect(() => {
-    getThisDay().then(setData);
+    getWeatherInfo(1).then((weatherInfoArray) => {
+      const [weatherInfo] = weatherInfoArray;
+      setData(weatherInfo);
+    });
   }, []);
 
   if (data === undefined) {

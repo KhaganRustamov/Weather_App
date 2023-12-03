@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
 
-import { getAllDay, FormattedWeatherInfo } from "@/services/getData";
+import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import Popup from "../popup/Popup";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import styles from "./days.module.scss";
@@ -23,7 +23,7 @@ const Days: React.FC = () => {
   const daysToShow = [7, 14, 30];
 
   useEffect(() => {
-    getAllDay(daysToShow[activeTab]).then(setData);
+    getWeatherInfo(daysToShow[activeTab]).then(setData);
   }, [activeTab]);
 
   if (data === undefined) {

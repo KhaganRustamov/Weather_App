@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { getThisDay, FormattedWeatherInfo } from "@/services/getData";
+import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./popup.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import close from "@/assets/images/staticImages/close.png";
@@ -30,7 +30,10 @@ const Popup: React.FC = () => {
   });
 
   useEffect(() => {
-    getThisDay().then(setData);
+    getWeatherInfo(1).then((weatherInfoArray) => {
+      const [weatherInfo] = weatherInfoArray;
+      setData(weatherInfo);
+    });
   }, []);
 
   if (data === undefined) {
