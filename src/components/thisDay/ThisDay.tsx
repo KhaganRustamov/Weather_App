@@ -40,11 +40,11 @@ const ThisDay: React.FC = () => {
       <div className={styles.bottom}>
         <div className={styles.time}>
           <Image src={clock} alt="clock" />
-          <div>{formattedTime}</div>
+          {formattedTime}
         </div>
         <div className={styles.city}>
           <Image src={navigation} alt="nav" />
-          <div>{city}</div>
+          {city}
         </div>
       </div>
     </div>

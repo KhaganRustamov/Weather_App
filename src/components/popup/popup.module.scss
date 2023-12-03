@@ -14,7 +14,6 @@
   background: var(--component-background);
   box-shadow: $box-shadow;
   border-radius: $border-radius;
-  transition: $transition;
 }
 
 .blur {
@@ -23,7 +22,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.25);
-  transition: $transition;
 }
 
 .close {
@@ -31,33 +29,38 @@
   top: 20px;
   right: 20px;
   cursor: pointer;
-  transition: $transition;
 }
 
 .day {
+  img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
   &__temp {
     font-size: 60px;
     color: $primary-color;
   }
   &__name {
     font-size: 25px;
-    color: #000;
-    margin-bottom: 12px;
-    transition: $transition;
+    color: var(--text-color);
+    margin-bottom: 10px;
   }
   &__time,
   &__city {
-    font-size: 15px;
+    display: flex;
+    font-size: 18px;
+    line-height: 25px;
     color: $base-color;
-    line-height: 20px;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
   }
-}
-
-.img {
-  margin-bottom: 15px;
 }
 
 .items {
   margin-top: 17px;
-  transition: $transition;
 }
