@@ -14,14 +14,12 @@ import wind from "@/assets/images/staticImages/wind.png";
 import clock from "@/assets/images/staticImages/clock.png";
 import navigation from "@/assets/images/staticImages/navigation.png";
 
-const Popup: React.FC = () => {
-  const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
-  const [popup, setPopup] = useState(true);
+interface PopupProps {
+  dayData: FormattedWeatherInfo | null;
+  closePopup: () => void;
+}
 
-  const closePopup = () => {
-    setPopup(!popup);
-  };
-
+const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
   const currentTime = new Date();
 
   const formattedTime = currentTime.toLocaleTimeString([], {
@@ -30,14 +28,11 @@ const Popup: React.FC = () => {
   });
 
   useEffect(() => {
-    getWeatherInfo(1).then((weatherInfoArray) => {
-      const [weatherInfo] = weatherInfoArray;
-      setData(weatherInfo);
-    });
+    getWeatherInfo(1);
   }, []);
 
-  if (data === undefined) {
-    return;
+  if (!dayData) {
+    return null;
   }
 
   const {
@@ -48,7 +43,7 @@ const Popup: React.FC = () => {
     humidity,
     windSpeed,
     weatherType,
-  } = data as FormattedWeatherInfo;
+  } = dayData;
 
   const items = [
     {
@@ -76,42 +71,40 @@ const Popup: React.FC = () => {
   ];
   return (
     <>
-      {popup && (
-        <div className={styles.blur}>
-          <div className={styles.popup}>
-            <div className={styles.day}>
-              <div className={styles.day__temp}>{temp}°</div>
-              <div className={styles.day__name}>Среда</div>
-              <DynamicImages weatherType={weatherType} />
-              <div className={styles.day__time}>
-                <Image src={clock} alt="clock" />
-                {formattedTime}
-              </div>
-              <div className={styles.day__city}>
-                <Image src={navigation} alt="nav" />
-                {city}
-              </div>
+      <div className={styles.blur}>
+        <div className={styles.popup}>
+          <div className={styles.day}>
+            <div className={styles.day__temp}>{temp}°</div>
+            <div className={styles.day__name}>Среда</div>
+            <DynamicImages weatherType={weatherType} />
+            <div className={styles.day__time}>
+              <Image src={clock} alt="clock" />
+              {formattedTime}
             </div>
-            <div className={styles.info}>
-              {items.map((item, i) => (
-                <div className={styles.items} key={i}>
-                  <div className={styles.icon}>{item.icon}</div>
-                  <div className={styles.name}>{item.name}</div>
-                  <div className={styles.value}>{item.value}</div>
-                </div>
-              ))}
+            <div className={styles.day__city}>
+              <Image src={navigation} alt="nav" />
+              {city}
             </div>
-            <Image
-              className={styles.close}
-              onClick={closePopup}
-              alt="close"
-              src={close}
-              width={20}
-              height={20}
-            />
           </div>
+          <div className={styles.info}>
+            {items.map((item, i) => (
+              <div className={styles.items} key={i}>
+                <div className={styles.icon}>{item.icon}</div>
+                <div className={styles.name}>{item.name}</div>
+                <div className={styles.value}>{item.value}</div>
+              </div>
+            ))}
+          </div>
+          <Image
+            className={styles.close}
+            onClick={closePopup}
+            alt="close"
+            src={close}
+            width={20}
+            height={20}
+          />
         </div>
-      )}
+      </div>
     </>
   );
 };

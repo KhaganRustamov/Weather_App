@@ -14,9 +14,12 @@ const Days: React.FC = () => {
   );
   const [activeTab, setActiveTab] = useState(0);
   const [popup, setPopup] = useState(false);
+  const [selectedDayData, setSelectedDayData] =
+    useState<FormattedWeatherInfo | null>(null);
 
-  const showPopup = () => {
-    setPopup(!popup);
+  const showPopup = (dayData: FormattedWeatherInfo) => {
+    setPopup(true);
+    setSelectedDayData(dayData);
   };
 
   const tabs = ["For a week", "For 14 days", "For a month"];
@@ -41,7 +44,11 @@ const Days: React.FC = () => {
       currentDate.setDate(currentDate.getDate() + i);
 
       return (
-        <div onClick={showPopup} className={styles.days_items} key={i}>
+        <div
+          onClick={() => showPopup(item)}
+          className={styles.days_items}
+          key={i}
+        >
           <div className={styles.day}>
             {isToday ? "Today" : getDayName(dayOfWeek)}
           </div>
@@ -77,7 +84,7 @@ const Days: React.FC = () => {
           </div>
         ))}
       </div>
-      {popup && <Popup />}
+      {popup && <Popup dayData={selectedDayData} closePopup={() => setPopup(false)} />}
       <div className={styles.days}>{days}</div>
     </>
   );
