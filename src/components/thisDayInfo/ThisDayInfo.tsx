@@ -15,7 +15,7 @@ const ThisDayInfo: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
 
   useEffect(() => {
-    getWeatherInfo(1).then((weatherInfoArray) => {
+    getWeatherInfo().then((weatherInfoArray) => {
       const [weatherInfo] = weatherInfoArray;
       setData(weatherInfo);
     });

@@ -19,7 +19,7 @@ const ThisDay: React.FC = () => {
   });
 
   useEffect(() => {
-    getWeatherInfo(1).then((weatherInfoArray) => {
+    getWeatherInfo().then((weatherInfoArray) => {
       const [weatherInfo] = weatherInfoArray;
       setData(weatherInfo);
     });

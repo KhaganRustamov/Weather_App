@@ -6,6 +6,7 @@ import styles from "./header.module.scss";
 
 import logo from "@/assets/images/staticImages/logo.png";
 import Theme from "@/components/theme/Theme";
+import Search from "../search/Search";
 
 const Header = () => {
   return (
@@ -20,6 +21,7 @@ const Header = () => {
         />
         <div className={styles.title}>weather forecast</div>
       </div>
+      <Search />
       <div className={styles.wrapper}>
         <Theme />
       </div>

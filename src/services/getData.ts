@@ -40,9 +40,9 @@ export interface FormattedWeatherInfo {
   dayOfWeek?: string;
 }
 
-export const getWeatherInfo = async (count: number) => {
+export const getWeatherInfo = async (count: number = 1, name: string = 'Baku') => {
   const response: AxiosResponse<WeatherData> = await axios.get(
-    `${_apiBase}${_apiKey}&q=London&cnt=${count}`
+    `${_apiBase}${_apiKey}&q=${name}&cnt=${count}`
   );
 
   if (!response.data) throw new Error("Unable to fetch data.");
