@@ -17,8 +17,8 @@ const Search: React.FC = () => {
   };
 
   const testDebounce = useCallback(
-    debounce((inputValue: string) => {
-      getWeatherInfo(inputValue);
+    debounce(async (inputValue: string) => {
+      await getWeatherInfo(1, inputValue);
     }, 3000),
     []
   );
