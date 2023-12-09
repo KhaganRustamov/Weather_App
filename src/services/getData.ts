@@ -37,6 +37,7 @@ export interface FormattedWeatherInfo {
   tempDay: number;
   tempNight: number;
   description: string;
+  dayOfWeek?: string;
 }
 
 export const getWeatherInfo = async (count: number) => {

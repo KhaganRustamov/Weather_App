@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./popup.module.scss";
@@ -43,6 +43,7 @@ const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
     humidity,
     windSpeed,
     weatherType,
+    dayOfWeek,
   } = dayData;
 
   const items = [
@@ -75,7 +76,7 @@ const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
         <div className={styles.popup}>
           <div className={styles.day}>
             <div className={styles.day__temp}>{temp}°</div>
-            <div className={styles.day__name}>Среда</div>
+            <div className={styles.day__name}>{dayOfWeek}</div>
             <DynamicImages weatherType={weatherType} />
             <div className={styles.day__time}>
               <Image src={clock} alt="clock" />
