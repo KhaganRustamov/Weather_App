@@ -40,7 +40,10 @@ export interface FormattedWeatherInfo {
   dayOfWeek?: string;
 }
 
-export const getWeatherInfo = async (count: number = 1, name: string = 'Moscow') => { 
+export const getWeatherInfo = async (
+  count: number = 1,
+  name: string = "Baku"
+) => {
   const response: AxiosResponse<WeatherData> = await axios.get(
     `${_apiBase}${_apiKey}&q=${name}&cnt=${count}`
   );
@@ -61,4 +64,4 @@ export const getWeatherInfo = async (count: number = 1, name: string = 'Moscow')
       description: item.weather[0].description,
     };
   });
-}
+};
