@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useState, useCallback } from "react";
 // @ts-ignore
 import debounce from "lodash.debounce";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import { getWeatherInfo } from "@/services/getData";
 import styles from "./search.module.scss";
 
 import search from "@/assets/images/staticImages/search.png";
-import clear from "@/assets/images/staticImages/close.png";
+import close from "@/assets/images/staticImages/close.png";
 
 const Search: React.FC = () => {
   const [value, setValue] = useState("");
@@ -17,16 +17,15 @@ const Search: React.FC = () => {
   };
 
   const testDebounce = useCallback(
-    debounce(async (inputValue: string) => {
-      await getWeatherInfo(1, inputValue);
-    }, 3000),
+    debounce((inputValue: string) => {
+      getWeatherInfo(1, inputValue);
+    }, 2000),
     []
   );
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
-    testDebounce(inputValue);
+    setValue(e.target.value);
+    testDebounce(e.target.value);
   };
 
   return (
@@ -36,15 +35,15 @@ const Search: React.FC = () => {
         value={value}
         onChange={onChangeInput}
         className={styles.input}
-        placeholder="Enter the name of the pizza"
+        placeholder="Enter the city"
       />
 
       {value && (
         <Image
           onClick={onClear}
-          className={styles.clear}
-          src={clear}
-          alt="clear"
+          className={styles.close}
+          src={close}
+          alt="close"
         />
       )}
     </div>

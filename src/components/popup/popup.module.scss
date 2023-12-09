@@ -32,6 +32,9 @@
   top: 20px;
   right: 20px;
   cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .day {

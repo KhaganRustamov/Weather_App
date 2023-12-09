@@ -1,39 +1,39 @@
+@import "@/styles/variables.scss";
+
 .root {
-    margin-right: 120px;
-    position: relative;
+  position: relative;
+}
+
+.input {
+  background: var(--component-background);
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+  transition: $transition;
+  color: var(--text-color);
+  border: none;
+  padding: 12px 25px;
+  width: 200px;
+  border-radius: 12px;
+  padding-left: 50px;
+  outline: none;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin-left: 12px;
+  margin-top: 12px;
+}
+
+.close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 2px;
+  margin-top: 12px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
   }
-  
-  .input {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 12px 25px;
-    width: 300px;
-    border-radius: 10px;
-    font-size: 15px;
-    padding-left: 50px;
-    &:focus {
-      border: 1px solid rgba(0, 0, 0, 0.3);
-    }
-  }
-  
-  .icon {
-    width: 20px;
-    height: 20px;
-    opacity: 0.5;
-    position: absolute;
-    margin-left: 13px;
-    margin-top: 13px;
-  }
-  
-  .clear {
-    width: 30px;
-    height: 30px;
-    opacity: 0.5;
-    position: absolute;
-    right: 0px;
-    margin-top: 8px;
-    cursor: pointer;
-  
-    &:hover {
-      opacity: 0.9;
-    }
-  }
+}

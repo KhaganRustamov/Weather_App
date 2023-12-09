@@ -29,7 +29,6 @@
 .name {
   width: 150px;
   color: $base-color;
-  
 }
 
 .value {
@@ -41,4 +40,5 @@
   top: 0;
   right: 0;
   position: absolute;
+  border-radius: $border-radius;
 }
