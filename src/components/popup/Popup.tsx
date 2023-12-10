@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { RootState } from "@/redux/store";
+import { changeSearchValue } from "@/redux/slices/searchSlice";
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./popup.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
@@ -20,6 +23,8 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
+  const search = useSelector((state: RootState) => state.searchValue);
+  const dispatch = useDispatch();
   const currentTime = new Date();
 
   const formattedTime = currentTime.toLocaleTimeString([], {
@@ -28,8 +33,12 @@ const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
   });
 
   useEffect(() => {
-    getWeatherInfo(1);
-  }, []);
+    if (!search) {
+      dispatch(changeSearchValue("Baku"));
+    } else {
+      getWeatherInfo(1, search);
+    }
+  }, [search]);
 
   if (!dayData) {
     return null;

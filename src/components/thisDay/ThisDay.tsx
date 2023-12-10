@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
 
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
+import { changeSearchValue } from "@/redux/slices/searchSlice";
 import styles from "./thisDay.module.scss";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import clock from "@/assets/images/staticImages/clock.png";
@@ -11,7 +14,9 @@ import navigation from "@/assets/images/staticImages/navigation.png";
 
 const ThisDay: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
+  const search = useSelector((state: RootState) => state.searchValue);
   const currentTime = new Date();
+  const dispatch = useDispatch();
 
   const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",
@@ -19,11 +24,15 @@ const ThisDay: React.FC = () => {
   });
 
   useEffect(() => {
-    getWeatherInfo(1).then((weatherInfoArray) => {
-      const [weatherInfo] = weatherInfoArray;
-      setData(weatherInfo);
-    });
-  }, []);
+    if (!search) {
+      dispatch(changeSearchValue("Baku"));
+    } else {
+      getWeatherInfo(1, search).then((weatherInfoArray) => {
+        const [weatherInfo] = weatherInfoArray;
+        setData(weatherInfo);
+      });
+    }
+  }, [search]);
 
   if (data === undefined) {
     return;

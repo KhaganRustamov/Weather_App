@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { format } from "date-fns";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
 
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
+import { changeSearchValue } from "@/redux/slices/searchSlice";
 import Popup from "../popup/Popup";
 import DynamicImages from "@/assets/images/dynamicImages/DynamicImages";
 import styles from "./days.module.scss";
@@ -16,6 +19,8 @@ const Days: React.FC = () => {
   const [popup, setPopup] = useState(false);
   const [selectedDayData, setSelectedDayData] =
     useState<FormattedWeatherInfo | null>(null);
+  const search = useSelector((state: RootState) => state.searchValue);
+  const dispatch = useDispatch();
 
   const showPopup = (dayData: FormattedWeatherInfo, dayOfWeek: string) => {
     setPopup(true);
@@ -26,8 +31,12 @@ const Days: React.FC = () => {
   const daysToShow = [7, 14, 30];
 
   useEffect(() => {
-    getWeatherInfo(daysToShow[activeTab]).then(setData);
-  }, [activeTab]);
+    if (!search) {
+      dispatch(changeSearchValue("Baku"));
+    } else {
+      getWeatherInfo(daysToShow[activeTab], search).then(setData);
+    }
+  }, [activeTab, search]);
 
   if (data === undefined) {
     return null;
