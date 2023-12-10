@@ -1,7 +1,11 @@
+'use client'
+
 import { ChangeEvent, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 // @ts-ignore
 import debounce from "lodash.debounce";
 import Image from "next/image";
+import { changeSearchValue } from "@/redux/slice/searchSlice";
 import { getWeatherInfo } from "@/services/getData";
 
 import styles from "./search.module.scss";
@@ -10,16 +14,18 @@ import search from "@/assets/images/staticImages/search.png";
 import close from "@/assets/images/staticImages/close.png";
 
 const Search: React.FC = () => {
+  // const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
   const onClear = () => {
     setValue("");
+    // dispatch(changeSearchValue(""));
   };
 
   const testDebounce = useCallback(
     debounce((inputValue: string) => {
-      getWeatherInfo(1, inputValue);
-    }, 2000),
+      // dispatch(changeSearchValue(inputValue)); 
+    }, 1000),
     []
   );
 

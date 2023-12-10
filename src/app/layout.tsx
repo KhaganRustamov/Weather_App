@@ -1,8 +1,6 @@
-import { Provider } from "react-redux";
 import { Nunito } from "next/font/google";
 import type { Metadata } from "next";
-
-import { store } from "@/redux/store";
+import { StoreProvider } from "@/redux/ui";
 import Header from "@/components/header/Header";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./global.css";
@@ -22,14 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <Provider store={store}>
-          <ThemeProvider>
+        <ThemeProvider>
+          <StoreProvider>
             <div className="container">
               <Header />
               {children}
             </div>
-          </ThemeProvider>
-        </Provider>
+          </StoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
