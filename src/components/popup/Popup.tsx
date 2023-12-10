@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { changeSearchValue } from "@/redux/slices/searchSlice";
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import styles from "./popup.module.scss";
@@ -24,7 +24,7 @@ interface PopupProps {
 
 const Popup: React.FC<PopupProps> = ({ dayData, closePopup }) => {
   const search = useSelector((state: RootState) => state.searchValue);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const currentTime = new Date();
 
   const formattedTime = currentTime.toLocaleTimeString([], {

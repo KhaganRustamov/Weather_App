@@ -1,16 +1,16 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+// @ts-ignore
+import debounce from "lodash.debounce";
 
 import { AppDispatch } from "@/redux/store";
 import { changeSearchValue } from "@/redux/slices/searchSlice";
-import { getWeatherInfo } from "@/services/getData";
 
 import styles from "./search.module.scss";
-
-import searching from "@/assets/images/staticImages/search.png";
+import search from "@/assets/images/staticImages/search.png";
 import close from "@/assets/images/staticImages/close.png";
 
 const Search: React.FC = () => {
@@ -22,15 +22,21 @@ const Search: React.FC = () => {
     dispatch(changeSearchValue(""));
   };
 
+  const debouncedGetWeatherInfo = useCallback(
+    debounce((value: string) => {
+      dispatch(changeSearchValue(value));
+    }, 1000),
+    []
+  );
+
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    dispatch(changeSearchValue(e.target.value));
-    getWeatherInfo(1, e.target.value);
+    debouncedGetWeatherInfo(e.target.value);
   };
 
   return (
     <div className={styles.root}>
-      <Image src={searching} alt="search" className={styles.icon} />
+      <Image src={search} alt="search" className={styles.icon} />
       <input
         value={value}
         onChange={onChangeInput}

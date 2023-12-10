@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import { changeSearchValue } from "@/redux/slices/searchSlice";
@@ -14,9 +14,10 @@ import navigation from "@/assets/images/staticImages/navigation.png";
 
 const ThisDay: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
-  const search = useSelector((state: RootState) => state.searchValue);
   const currentTime = new Date();
-  const dispatch = useDispatch();
+
+  const search = useSelector((state: RootState) => state.searchValue);
+  const dispatch: AppDispatch = useDispatch();
 
   const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",

@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
 
-import styles from "./thisDayInfo.module.scss";
+import { RootState, AppDispatch } from "@/redux/store";
 import { getWeatherInfo, FormattedWeatherInfo } from "@/services/getData";
 import { changeSearchValue } from "@/redux/slices/searchSlice";
+import styles from "./thisDayInfo.module.scss";
 import thermometer from "@/assets/images/staticImages/thermometer.png";
 import pressureImg from "@/assets/images/staticImages/pressure.png";
 import humidityImg from "@/assets/images/staticImages/humidity.png";
@@ -16,8 +16,9 @@ import wind from "@/assets/images/staticImages/wind.png";
 
 const ThisDayInfo: React.FC = () => {
   const [data, setData] = useState<FormattedWeatherInfo | undefined>(undefined);
+
   const search = useSelector((state: RootState) => state.searchValue);
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     if (!search) {
