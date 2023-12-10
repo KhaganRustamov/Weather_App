@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useState, ReactNode } from "react";
 
 interface ThemeContextProps {
   toggle: () => void;
-  mode: string;
+  mode: string | null;
 }
 
 interface ThemeProviderProps {
@@ -13,31 +13,17 @@ interface ThemeProviderProps {
 
 export const ThemeContext = createContext<ThemeContextProps>({
   toggle: () => {},
-  mode: "",
+  mode: null,
 });
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [mode, setMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      const storedMode = localStorage.getItem("theme");
-      return storedMode !== null ? storedMode : "";
-    }
-    return "";
-  });
+  const [mode, setMode] = useState(() => localStorage.getItem("theme"));
 
   const toggle = () => {
     const newMode = mode === "dark" ? "light" : "dark";
     setMode(newMode);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", newMode);
-    }
+    localStorage.setItem("theme", newMode);
   };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", mode);
-    }
-  }, [mode]);
 
   return (
     <ThemeContext.Provider value={{ toggle, mode }}>
