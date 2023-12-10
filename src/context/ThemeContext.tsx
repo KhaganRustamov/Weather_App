@@ -18,18 +18,25 @@ export const ThemeContext = createContext<ThemeContextProps>({
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [mode, setMode] = useState(() => {
-    const storedMode = localStorage.getItem("theme");
-    return storedMode !== null ? storedMode : "";
+    if (typeof window !== "undefined") {
+      const storedMode = localStorage.getItem("theme");
+      return storedMode !== null ? storedMode : "";
+    }
+    return "";
   });
 
   const toggle = () => {
     const newMode = mode === "dark" ? "light" : "dark";
     setMode(newMode);
-    localStorage.setItem("theme", newMode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", newMode);
+    }
   };
 
   useEffect(() => {
-    localStorage.setItem("theme", mode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", mode);
+    }
   }, [mode]);
 
   return (
