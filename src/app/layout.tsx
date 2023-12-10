@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { Provider } from "react-redux";
 import { Nunito } from "next/font/google";
+import type { Metadata } from "next";
 
+import { store } from "@/redux/store";
 import Header from "@/components/header/Header";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./global.css";
-
 import "@/styles/app.scss";
 
 const nunito = Nunito({ subsets: ["latin"] });
@@ -21,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunito.className}>
-        <ThemeProvider>
-          <div className="container">
-            <Header />
-            {children}
-          </div>
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider>
+            <div className="container">
+              <Header />
+              {children}
+            </div>
+          </ThemeProvider>
+        </Provider>
       </body>
     </html>
   );
