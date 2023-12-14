@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const _apiBase = "http://api.openweathermap.org/data/2.5/forecast?";
+const _apiBase = "https://api.openweathermap.org/data/2.5/forecast?";
 const _apiKey = "appid=14781ef057bc275f053d6c09fcb0e8fd";
 
 interface WeatherData {
