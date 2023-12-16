@@ -18,22 +18,13 @@ export const ThemeContext = createContext<ThemeContextProps>({
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [mode, setMode] = useState(() => {
-    try {
-      return localStorage.getItem("theme") || "light";
-    } catch (error) {
-      console.error("Error getting theme from localStorage:", error);
-      return "light";
-    }
+    return localStorage.getItem("theme") || "light";
   });
 
   const toggle = () => {
     const newMode = mode === "dark" ? "light" : "dark";
     setMode(newMode);
-    try {
-      localStorage.setItem("theme", newMode);
-    } catch (error) {
-      console.error("Error setting theme in localStorage:", error);
-    }
+    return localStorage.setItem("theme", newMode);
   };
 
   return (
