@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, ReactNode, useEffect } from "react";
 
 interface ThemeContextProps {
   toggle: () => void;
-  mode: string | null;
+  mode: string;
 }
 
 interface ThemeProviderProps {
@@ -13,19 +13,39 @@ interface ThemeProviderProps {
 
 export const ThemeContext = createContext<ThemeContextProps>({
   toggle: () => {},
-  mode: null,
+  mode: "light",
 });
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [mode, setMode] = useState(() => {
-    return localStorage.getItem("theme") || "light";
-  });
+  const [isLocalStorageRead, setIsLocalStorageRead] = useState(false);
+  const [mode, setMode] = useState("light");
+
+  useEffect(() => {
+    try {
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme) {
+        setMode(storedTheme);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLocalStorageRead(true);
+    }
+  }, []);
 
   const toggle = () => {
     const newMode = mode === "dark" ? "light" : "dark";
     setMode(newMode);
-    return localStorage.setItem("theme", newMode);
+    try {
+      localStorage.setItem("theme", newMode);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  if (!isLocalStorageRead) {
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ toggle, mode }}>
