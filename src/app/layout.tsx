@@ -9,7 +9,7 @@ import "@/styles/app.scss";
 const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Weather Forecast",
 };
 
 export default function RootLayout({
